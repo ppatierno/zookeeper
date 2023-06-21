@@ -1900,6 +1900,7 @@ public class QuorumPeer extends ZooKeeperThread implements QuorumStats.Provider 
             }
             QuorumServer qs = qv.getAllMembers().get(getId());
             if (qs != null) {
+                LOG.info("** qs.addr {}, qs.electionAddr {}, qs.clientAddr{}", qs.addr, qs.electionAddr, qs.clientAddr);
                 setAddrs(qs.addr, qs.electionAddr, qs.clientAddr);
             }
             updateObserverMasterList();

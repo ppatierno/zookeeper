@@ -848,6 +848,11 @@ public class Leader extends LearnerMaster {
         //new configuration
         Proposal.QuorumVerifierAcksetPair newQVAcksetPair = reconfigProposal.qvAcksetPairs.get(reconfigProposal.qvAcksetPairs.size() - 1);
 
+        LOG.info("** 1. newQVAcksetPair.getQuorumVerifier().getVotingMembers().get(self.getId()).addr = {}", newQVAcksetPair.getQuorumVerifier().getVotingMembers().get(self.getId()).addr);
+        LOG.info("** 2. self.getQuorumAddress() = {}", self.getQuorumAddress());
+        self.recreateSocketAddresses(self.getId());
+        LOG.info("** 3. newQVAcksetPair.getQuorumVerifier().getVotingMembers().get(self.getId()).addr = {}", newQVAcksetPair.getQuorumVerifier().getVotingMembers().get(self.getId()).addr);
+        LOG.info("** 4. self.getQuorumAddress() = {}", self.getQuorumAddress());
         //check if I'm in the new configuration with the same quorum address -
         // if so, I'll remain the leader
         if (newQVAcksetPair.getQuorumVerifier().getVotingMembers().containsKey(self.getId())
